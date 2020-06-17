@@ -14,4 +14,4 @@ pip install --no-index -f https://github.com/Kojoley/atari-py/releases atari_py
 ```
 
 ## How to use this repository?:
-This repository contains both python files (```.py```) and python notebooks (```.ipynb```). Indeed some algorithms have been written on Google Colab and offer the most features, however, for convenience it is possible to run these codes on any intepreter with the python files.
+This repository contains both python files (```.py```) and python notebooks (```.ipynb```). Indeed some algorithms have been written on Google Colab and offer the most features, however, for convenience it is possible to run these codes on any interpreter with the python files.
