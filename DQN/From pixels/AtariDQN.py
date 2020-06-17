@@ -145,10 +145,8 @@ if __name__ == '__main__':
         total_reward = 0
         
         while not done:
-            #env.render()
             step += 1
             action = agent.act(env, state, eps)
-            #action = env.action_space.sample()
             next_state, reward, done, _ = env.step(action)
             '''next_state = preprocess(next_state)
             plt.figure()
@@ -177,6 +175,6 @@ if __name__ == '__main__':
         if i % 10 == 0 :
             moy10 = moy/10
             print(f'\rmoyenne10ep {moy10},episode {i},epsilon = {eps}, step = {step}')
-            #if i % 100 == 0 :
-              #agent.save(i, moy10)
+            if i % 100 == 0 :
+              agent.save(i, moy10)
             moy = 0
