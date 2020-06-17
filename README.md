@@ -5,4 +5,6 @@ This project was aimed at writing algorithms able to learn how to play various g
 ![](pong.gif)
 ![](breakout.gif)
 ![](pacman.gif)
+
+[![Watch the video](video projet.png)](https://www.youtube.com/watch?v=eeM2Rdbufco)
 ## Installing Atari package under windows
