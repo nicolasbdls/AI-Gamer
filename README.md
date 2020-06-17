@@ -13,4 +13,5 @@ The ```openai\atari-py``` package is not officially supported under Windows. How
 pip install --no-index -f https://github.com/Kojoley/atari-py/releases atari_py
 ```
 
-## How to use this repository
+## How to use this repository?:
+This repository contains both python files (```.py```) and python notebooks (```.ipynb```). Indeed some algorithms have been written on Google Colab and offer the most features, however, for convenience it is possible to run these codes on any intepreters with the python files.
