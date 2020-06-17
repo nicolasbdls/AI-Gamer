@@ -29,7 +29,7 @@ class DQN(nn.Module):
         self.conv3 = nn.Conv2d(64, 64, kernel_size=3, stride=1, bias=False)
         self.fc1 = nn.Linear(3136, 512)
         self.fc2 = nn.Linear(512, action_dim)
-        self.device = 'cpu'
+        self.device = 'cuda'
 
     def forward (self, x):
         state = x.to(self.device).float()/255
@@ -116,7 +116,7 @@ if __name__ == '__main__':
     env.reset()
     env.seed(seed)
     torch.manual_seed(seed)
-    device = torch.device("cpu")
+    device = torch.device("cuda")
     agent = Agent(env.observation_space.shape , env.action_space.n)
     episodes = 50000
     eps = 1
