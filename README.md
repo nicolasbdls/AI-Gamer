@@ -6,5 +6,5 @@ This project was aimed at writing algorithms able to learn how to play various g
 ![](breakout.gif)
 ![](pacman.gif)
 
-[![Watch the video](https://imgur.com/biAiR9L)](https://www.youtube.com/watch?v=eeM2Rdbufco)
+[![](https://imgur.com/biAiR9L.png)](https://youtu.be/vt5fpE0bzSY)
 ## Installing Atari package under windows
