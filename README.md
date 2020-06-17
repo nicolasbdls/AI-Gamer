@@ -13,7 +13,7 @@ The ```openai\atari-py``` package is not officially supported under Windows. How
 pip install --no-index -f https://github.com/Kojoley/atari-py/releases atari_py
 ```
 
-## How to use this repository?:
-This repository contains both python files (```.py```) and python notebooks (```.ipynb```). Indeed some algorithms have been written on Google Colab and offer the most features, however, for convenience it is possible to run these codes on any interpreter with the python files.
+## How to use this repository ?
+This repository contains both python files (```.py```) and python notebooks (```.ipynb```). Indeed some algorithms have been written on Google Colab and offer the most features (for example the use of tensorboard), however, for convenience it is possible to run these codes on any interpreter with the python files.
 
 The DQN algorithm for Atari is presented in a single version applied to the game Pong in order to show its versatility. It can be easily applied to other Atari games with some minor modifications (a few hyperparameters, and the delimitations of the cropped image in the ```wrappers.py``` file.
