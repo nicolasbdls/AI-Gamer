@@ -18,5 +18,7 @@ This repository contains both python files (```.py```) and python notebooks (```
 
 The DQN algorithm for Atari is presented in a single version applied to the game Pong in order to show its versatility. It can be easily applied to other Atari games with some minor modifications (a few hyperparameters, and the delimitations of the cropped image in the ```wrappers.py``` file.
 
+Some trained models can be found to observe the results.
+
 ## Associated report
 The final report giving a full description of this project can be found [here](https://documentcloud.adobe.com/link/track?uri=urn:aaid:scds:US:cecbce1b-0d7c-4f68-8257-e124e598ae63).
