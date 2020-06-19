@@ -1,3 +1,10 @@
+############################################################################################
+#This algorithm is the final result of this project. It is able to play different          #
+#games, at least Pong, Breakout and MsPacman, by only changing the name of the environment.#
+#No trained models have been obtained for Breakout and Pacman yet, if you want to see the  #
+#results for these ones please go to 'old but trained folder'.                             #
+############################################################################################
+
 import gym
 import numpy as np
 import torch
@@ -15,18 +22,10 @@ from wrappers import *
 
 
 load = False
-x1 = 34
-x2 = 34
+
 env_id = "PongNoFrameskip-v4"
 env    = make_atari(env_id)
-env    = wrap_deepmind(env)
-
-if 'Pong' in env.spec.id:
-    lr = 0.00025
-    end_decay = 3*10**5
-else :
-    lr = 0.00001
-    end_decay = 10**6   
+env    = wrap_deepmind(env,env_id)
 
 
 
@@ -52,10 +51,12 @@ class DQN(nn.Module):
 
 
 class Agent:
-    def __init__(self, state_dim, action_dim):
+    def __init__(self, state_dim, action_dim, name, learning_rate):
         self.network = DQN(state_dim, action_dim).to(device)  # creates network from nn model
         self.target_network = copy.deepcopy(self.network).to(device)  # create target_network from network
-        self.optimizer = optim.Adam(self.network.parameters(), lr)  # optimizer, parameters, lr very low
+        self.learning_rate = learning_rate
+        self.name = name
+        self.optimizer = optim.Adam(self.network.parameters(), lr=self.learning_rate)  # optimizer, parameters, lr very low
         self.memory = []
         self.states_memory = []
         self.actions_memory = []
@@ -75,7 +76,7 @@ class Agent:
 
     def train(self):
         with torch.no_grad():
-          argmax = self.network(self.next_states_memory).detach().max(1)[1].unsqueeze(1)  # action max from next_states from batch above
+          argmax = self.network(self.next_states_memory).detach().max(1)[1].unsqueeze(1)  # implements double Q-learning
           target = self.rewards_memory + (gamma * self.target_network(self.next_states_memory).detach().gather(1, argmax)) * (~self.dones_memory)  # q-target
 
         Q_current = self.network(self.states_memory).gather(-1, self.actions_memory)  # Q_current
@@ -94,7 +95,7 @@ class Agent:
 
       
     def save(self, episode, mean_reward):
-        file_name = "trainedmodels/" + "pong" + ".ptm"
+        file_name = "trainedmodels/" + name + ".ptm"
         agent_state = { "episode" : episode,
                         "network" : self.network.state_dict(),
                         "optimizer_state_dict": self.optimizer.state_dict(),
@@ -103,7 +104,7 @@ class Agent:
         print("Agent's state saved to ", file_name)
 
     def load(self):
-        file_name = "trainedmodels/" + "pong" + ".ptm"
+        file_name = "trainedmodels/" + name + ".ptm"
         checkpoint = torch.load(file_name)
         self.network.load_state_dict(checkpoint["network"])
         self.network.to(device)
@@ -126,11 +127,26 @@ if __name__ == '__main__':
     env.seed(seed)
     torch.manual_seed(seed)
     device = torch.device("cuda")
-    agent = Agent(env.observation_space.shape , env.action_space.n)
+    if 'Pong' in env.spec.id:                #adaptation of the hyperparameters to the game
+        learning_rate = 0.00025
+        end_decay = 3*10**5
+        name = 'pong'
+    elif 'Breakout' in env.spec.id :
+        learning_rate= 0.00001
+        end_decay = 10**6
+        name = 'breakout'
+    elif 'Pacman' in env.spec.id :
+        learning_rate = 0.00001
+        end_decay = 10**6
+        name = 'pacman'
+    else :
+        learning_rate = 0.00001
+        end_decay = 10**6
+        name = 'game'    
+    agent = Agent(env.observation_space.shape , env.action_space.n, name, learning_rate)
     episodes = 50000
     eps = 1
     eps_coeff = 0.99
-    dqn_updates = 0
     rewards = []
     epsh= []
     mean_rh = []
@@ -144,7 +160,7 @@ if __name__ == '__main__':
     step = -1
     for i in range(debut, episodes + 1):
         state = env.reset()
-        '''plt.figure()
+        '''plt.figure()                            #uncomment these lines to visualize the processed screen
         plt.imshow(state,
         interpolation='none', cmap='gray')
         plt.title('Example extracted screen')
@@ -157,13 +173,6 @@ if __name__ == '__main__':
             step += 1
             action = agent.act(env, state, eps)
             next_state, reward, done, _ = env.step(action)
-            '''next_state = preprocess(next_state)
-            plt.figure()
-            plt.imshow(next_state,
-            interpolation='none', cmap = 'gray')
-            plt.title('Example extracted screen')
-            plt.colorbar()
-            plt.show()'''
             total_reward += reward
             eps = max(0.02, 1 - step / end_decay)
 

@@ -1,3 +1,7 @@
+######################################################################################
+#This algorithm shows the render of any game previously trained with AtariDQNTrain.py#
+######################################################################################
+
 import gym
 import numpy as np
 import torch
@@ -49,7 +53,7 @@ class Agent:
         self.target_network = copy.deepcopy(self.network).to(device)  # create target_network from network
         self.learning_rate = learning_rate
         self.name = name
-        self.optimizer = optim.Adam(self.network.parameters(), lr=learning_rate)  # optimizer, parameters, lr very low
+        self.optimizer = optim.Adam(self.network.parameters(), lr=self.learning_rate)  # optimizer, parameters, lr very low
         self.memory = []
         self.states_memory = []
         self.actions_memory = []
@@ -112,7 +116,7 @@ class Agent:
 
 if __name__ == '__main__':
     BATCH_SIZE = 32
-    UPDATE_TARGET = 1000
+    UPDATE_TARGET = 1000             #could be increased
     gamma = 0.99
     seed = 0
     np.random.seed(seed)
@@ -121,7 +125,7 @@ if __name__ == '__main__':
     env.seed(seed)
     torch.manual_seed(seed)
     device = torch.device("cpu")
-    if 'Pong' in env.spec.id:
+    if 'Pong' in env.spec.id:                #adaptation of the hyperparameters to the game
         learning_rate = 0.00025
         end_decay = 3*10**5
         name = 'pong'
@@ -142,7 +146,6 @@ if __name__ == '__main__':
     episodes = 50000
     eps = 1
     eps_coeff = 0.99
-    dqn_updates = 0
     rewards = []
     epsh= []
     mean_rh = []
@@ -163,7 +166,7 @@ if __name__ == '__main__':
             env.render()
             time.sleep(0.1)            
             step += 1
-            action = agent.act(env, state, 0)
+            action = agent.act(env, state, 0)    #only exploitation
             next_state, reward, done, _ = env.step(action)
             total_reward += reward
 

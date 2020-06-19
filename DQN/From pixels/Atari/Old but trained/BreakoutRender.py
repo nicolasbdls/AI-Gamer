@@ -1,5 +1,6 @@
 ############################################################################
-#This algorithm shows the render of breakout for a given pretrained network#
+#This algorithm shows the render of breakout for a given model previously  #
+#trained with BreakoutTrain.ipynb                                          #
 ############################################################################
 
 
@@ -20,7 +21,7 @@ from gym import spaces
 cv2.ocl.setUseOpenCL(False)
 import os
 from os.path import exists
-from time import time
+import time
 from gym import spaces
 
 

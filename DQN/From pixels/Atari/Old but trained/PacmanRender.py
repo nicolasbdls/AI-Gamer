@@ -1,3 +1,10 @@
+############################################################################
+#This algorithm shows the render of pacman for a given model previously    #
+#trained with PacmanTrain.ipynb                                            #
+############################################################################
+
+
+
 import gym
 import numpy as np
 import torch
@@ -14,23 +21,8 @@ from gym import spaces
 cv2.ocl.setUseOpenCL(False)
 import os
 from os.path import exists
-##########################################################################
-#This algorithm shows the render of pacman for a given pretrained network#
-##########################################################################
-
-
-
-
-
-import numpy as np
-from collections import deque
-import gym
-from gym import wrappers
-from time import time
-from gym import spaces
-import cv2
 import time
-cv2.ocl.setUseOpenCL(False)
+from gym import spaces
 
 
 load = True
@@ -406,16 +398,6 @@ if __name__ == '__main__':
     step = -1
     for i in range(debut, episodes + 1):
         state = env.reset()
-        '''plt.figure()
-        plt.imshow(state,
-        interpolation='none', cmap='gray')
-        plt.title('Example extracted screen')
-        plt.colorbar()
-        plt.show()
-        
-        stacked_frames = np.stack((state, state, state, state), axis=2)
-        stacked_frames = np.reshape([stacked_frames], (4, 80, 80))
-        state = stacked_frames'''
         done = False
         total_reward = 0
         
