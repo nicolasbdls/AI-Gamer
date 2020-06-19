@@ -16,7 +16,7 @@ pip install --no-index -f https://github.com/Kojoley/atari-py/releases atari_py
 ## How to use this repository ?
 This repository contains both python files (```.py```) and python notebooks (```.ipynb```). Indeed some algorithms have been written on Google Colab and offer the most features (for example the use of tensorboard), however, for convenience it is possible to run these codes on any interpreter with the python files.
 
-The DQN algorithm for Atari is presented in a single version applied to the game Pong in order to show its versatility. It can be easily applied to other Atari games with some minor modifications (a few hyperparameters, and the delimitations of the cropped image in the ```wrappers.py``` file.
+The last version of  the DQN algorithm for Atari is presented in a single version applied to the game Pong.In can easily be applied to other games by just changing the name of the environment in ```gym.make()```. However, at the moment no satisfactory trained models for breakout or pacman have been obtained for a question of time. In order to observe good results for these two games, old versions of the DQN which were more specific to each game have been uploaded with the corresponding trained models. They can be found in "Old but trained" folder.
 
 Some trained models can be found to observe the results.
 
