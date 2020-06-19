@@ -20,7 +20,7 @@ The last version of  the DQN algorithm for Atari is presented in a single versio
 
 For the DQN applied to Atari, the "train" algorithms can be used to start training the agent or to coninue training from a pretrained model (in this case set epsilon to 0.02 to directly exploit the policy). The "render" algorithms can be used to visualize the results from a trained model and test the agent. It can be useful to observe the true score of the game as the printed score during training may be the score achieved within one life (see ```EpisodicLife``` wrapper) or with a clipped reward (see ```ClipReward```wrapper).
 
-To run the DQN algorithms with convolutional layers, a GPU is necessary. Also a large RAM is necessary, most of the DQN were run using the "Big RAM" feature of Google Colab (25 GB).
+To run the DQN algorithms with convolutional layers, a GPU is necessary. Also a large RAM is necessary, most of the DQN were run using the "Big RAM" feature of Google Colab (25 GB). If there is not enough RAM available, the number of states stocked in memory can be decreased.
 
 ## Associated report
 The final report giving a full description of this project can be found [here](https://documentcloud.adobe.com/link/track?uri=urn:aaid:scds:US:cecbce1b-0d7c-4f68-8257-e124e598ae63).
