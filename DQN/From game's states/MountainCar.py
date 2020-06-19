@@ -1,3 +1,9 @@
+######################################################################################
+#This notebook implements a Deep Q Network to learn how to play the game MountainCar.#
+#The state of the game is here a tuple of two numbers (position and velocity)        #
+#returned by the environment.                                                        #
+######################################################################################
+
 import gym
 import numpy as np
 import torch
@@ -7,7 +13,6 @@ import torch.optim as optim
 import torch.nn.functional as F
 import copy
 import matplotlib.pyplot as plt
-
 
 
 class DQN(nn.Module):

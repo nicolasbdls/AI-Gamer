@@ -1,3 +1,9 @@
+##########################################################################
+#This algorithm shows the render of pacman for a given pretrained network#
+##########################################################################
+
+
+
 import gym
 import numpy as np
 import torch
@@ -14,17 +20,9 @@ from gym import spaces
 cv2.ocl.setUseOpenCL(False)
 import os
 from os.path import exists
-##########################################################################
-#This algorithm shows the render of pacman for a given pretrained network#
-##########################################################################
 
 
 
-
-
-import numpy as np
-from collections import deque
-import gym
 from gym import wrappers
 from time import time
 from gym import spaces

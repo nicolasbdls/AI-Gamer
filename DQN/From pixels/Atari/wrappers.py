@@ -1,3 +1,13 @@
+##########################################################################################################
+#This files takes some functions from the baselines wrappers given by open AI                            #
+#They can be found at https://github.com/openai/baselines/blob/master/baselines/common/atari_wrappers.py #
+#The WarpFrame class was modified to include our own image processing function, able to crop image at the#
+#right dimensions for different games. The choice of the wrapper functions to be used is made according  #
+#to the chosen game                                                                                      #
+##########################################################################################################
+
+
+
 import numpy as np
 from collections import deque
 import gym
@@ -128,17 +138,19 @@ class ClipRewardEnv(gym.RewardWrapper):
         """Bin reward to {+1, 0, -1} by its sign."""
         return np.sign(reward)
 
-class WarpFrame(gym.ObservationWrapper, x1, x2):
-    def __init__(self, env):
+class WarpFrame(gym.ObservationWrapper):
+    def __init__(self, env, x1, x2):
         """Warp frames to 84x84 as done in the Nature paper and later work."""
         gym.ObservationWrapper.__init__(self, env)
+        self.x1 = x1               #parameters to crop the image in relation with the game
+        self.x2 = x2
         self.width = 84
         self.height = 84
         self.observation_space = spaces.Box(low=0, high=255,
             shape=(1, self.height, self.width), dtype=np.uint8)
 
     def observation(self, frame):
-        frame = frame[x1: 160 + x2, :160]
+        frame = frame[self.x1: 160 + self.x2, :160]
         frame = frame.mean(2)
         frame = cv2.resize(frame, (self.width, self.height), interpolation=cv2.INTER_AREA)
         frame = np.reshape(frame, [1, 84, 84])
@@ -202,30 +214,7 @@ class LazyFrames(object):
     def __getitem__(self, i):
         return self._force()[i]
 
-if 'Pong' in env.spec.id:
-    episode_life=True
-    clip_rewards=True
-    frame_stack=True
-    x1 = 34
-    x2 = 34
-if 'Breakout' in env.spec.id:
-    episode_life=True
-    clip_rewards=False
-    frame_stack=True
-    x1 = 34
-    x2 = 34
-if 'Pacman' in env.spec.id:
-    episode_life=True
-    clip_rewards=True    #can be set to False, when set to True, the agent tries to maximize its living time but not necessarily its score
-    frame_stack=False
-    x1 = 2
-    x2 = 10
-elif :
-    episode_life=True
-    clip_rewards=False
-    frame_stack=True
-    x1 = 34
-    x2 = 34
+
 def make_atari(env_id):
     env = gym.make(env_id)
     assert 'NoFrameskip' in env.spec.id
@@ -233,9 +222,33 @@ def make_atari(env_id):
     env = MaxAndSkipEnv(env, skip=4)
     return env
 
-def wrap_deepmind(env, episode_life, clip_rewards, frame_stack, x1, x2):
+def wrap_deepmind(env, env_id):
     """Configure environment for DeepMind-style Atari.
     """
+    if 'Pong' in env.spec.id:                                  #each game do not needs the same wrappers
+        episode_life=True
+        clip_rewards=True
+        frame_stack=True
+        x1 = 34
+        x2 = 34
+    elif 'Breakout' in env.spec.id:
+        episode_life=True
+        clip_rewards=False
+        frame_stack=True
+        x1 = 34
+        x2 = 34
+    elif 'Pacman' in env.spec.id:
+        episode_life=True
+        clip_rewards=True    #can be set to False, when set to True, the agent tries to maximize its living time but not necessarily its score
+        frame_stack=False
+        x1 = 2
+        x2 = 10
+    else:
+        episode_life=True
+        clip_rewards=False
+        frame_stack=True
+        x1 = 34
+        x2 = 34
     if episode_life:
         env = EpisodicLifeEnv(env)
     if 'FIRE' in env.unwrapped.get_action_meanings():
