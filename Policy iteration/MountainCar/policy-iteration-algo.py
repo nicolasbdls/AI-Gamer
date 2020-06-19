@@ -1,3 +1,7 @@
+#########################################################################
+#This algorithm is the implementation of policy iteration on MountainCar#
+#########################################################################
+
 import gym
 import math
 import numpy as np

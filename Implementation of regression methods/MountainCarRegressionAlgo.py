@@ -1,13 +1,18 @@
+########################################################################################
+#In this algorithm, the policy is improved by fitting a target function by regression  #
+#using the least-squares method. The approximated function is a second order polynomial#
+########################################################################################
+
 import gym
 import numpy as np
 from mpl_toolkits import mplot3d
 import matplotlib.pyplot as plt
 
 def regression(action,states,T):
-    X1 = (np.array(states[action]).T)[0]
-    X2 = (np.array(states[action]).T)[1]
-    A = np.array([X1*0+1, X1, X2, X1*X2, X1**2, X2**2]).T
-    coeffs, r, rank, s = np.linalg.lstsq(A, T[action], rcond=None)
+    X1 = (np.array(states[action]).T)[0]  #sample positions
+    X2 = (np.array(states[action]).T)[1]  #sample velocities
+    A = np.array([X1*0+1, X1, X2, X1*X2, X1**2, X2**2]).T  #constructs a second order polynomiql
+    coeffs, r, rank, s = np.linalg.lstsq(A, T[action], rcond=None) #implements the least squares method between A and the target a each point
     return coeffs
 
 def getpoly(X, d, e, f):

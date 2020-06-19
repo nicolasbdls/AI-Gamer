@@ -1,3 +1,9 @@
+########################################################################################################
+#This algorithm allows to visualize with ation has an optimal Q-value for each state (shown in green)  #
+#It uses Q-tables produced by the q-learning algorithm.                                                # 
+########################################################################################################
+
+
 from mpl_toolkits.mplot3d import axes3d
 import matplotlib.pyplot as plt
 from matplotlib import style

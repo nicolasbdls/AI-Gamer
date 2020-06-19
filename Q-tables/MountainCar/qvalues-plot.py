@@ -1,3 +1,10 @@
+#####################################################################################
+#This algorithms shows how the q-values corresponding to each action are displayed  #
+#A loop allows to plot the results for different episodes and therefore see how they#
+#evolve. The data comes from the Q-tables produced by the Q-learning algorithm.     #
+#####################################################################################
+
+
 from mpl_toolkits.mplot3d import axes3d
 import matplotlib.pyplot as plt
 from matplotlib import style
@@ -10,7 +17,7 @@ y=np.linspace(0,20,20)
 
 fig = plt.figure(figsize=(20, 20))
 
-for i in range(8990, 9000, 10):
+for i in range(0, 9000, 10):
     print(i)
     ax1 = fig.add_subplot(311, projection='3d')
     ax2 = fig.add_subplot(312, projection='3d')
@@ -35,8 +42,8 @@ for i in range(8990, 9000, 10):
 
 
     X, Y = np.meshgrid(x, y, copy=False)
-    X=X.flatten()
-    Y=Y.flatten()
+    X=X.flatten()   #position points
+    Y=Y.flatten()   #velocity points
     A = np.array([X*0+1, X, Y, X**2, X**2*Y, X**2*Y**2, Y**2, X*Y**2, X*Y]).T
     B=a.flatten()
     C=b.flatten()
@@ -79,7 +86,7 @@ for i in range(8990, 9000, 10):
 
 
 
-    #plt.savefig(f"qtable_charts/{i}.png")
+    #plt.savefig(f"qtable_charts/{i}.png")     #uncomment to save the figures
     plt.show()
     plt.clf()
     

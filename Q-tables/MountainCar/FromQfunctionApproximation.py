@@ -1,3 +1,10 @@
+###########################################################################################################
+#In this algorithm, the Q-table of a winning episode is uploaded. The agent's policy is extracted from it.#
+#3 Q-functions are approximated from the Q-table and then the agent takes the action which corresponds to #
+#the argmax between the 3 Q-functions.                                                                     #
+###########################################################################################################
+
+
 import gym
 import numpy as np
 

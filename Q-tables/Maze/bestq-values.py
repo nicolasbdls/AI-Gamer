@@ -1,3 +1,10 @@
+########################################################################################################
+#This algorithm allows to visualize with ation has an optimal Q-value for each state (shown in green)  #
+#It uses Q-tables produced by the q-learning algorithm. By looking at which action has the best q-value#
+#it is possible to retrace the path of the agent in the maze                                           # 
+########################################################################################################
+
+
 from mpl_toolkits.mplot3d import axes3d
 import matplotlib.pyplot as plt
 from matplotlib import style

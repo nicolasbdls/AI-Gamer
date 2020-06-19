@@ -1,3 +1,9 @@
+###############################################################################################
+#In this algorithm a Q-function that has been approximated previously is fitted with a network#
+#The loss is printed, different hyperparameters can be easily tuned. In this way, a network   #
+#able to fit MountainCar's Q-functions can be obtained                                        #
+###############################################################################################
+
 import numpy as np
 import torch
 import random

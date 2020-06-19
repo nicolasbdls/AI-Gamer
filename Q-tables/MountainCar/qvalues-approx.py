@@ -1,3 +1,10 @@
+###############################################################################
+#In this algorithm the Q-functions are directly approximated from the Q-tables#
+#A plot shows how the Q-values are displayed and also the corresponding       #
+#polynomial approximation.                                                   #
+###############################################################################
+
+
 from mpl_toolkits.mplot3d import axes3d
 import matplotlib.pyplot as plt
 from matplotlib import style

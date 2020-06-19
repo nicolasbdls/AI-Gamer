@@ -1,3 +1,9 @@
+##############################################################################################################################
+#Policy iteration has been implemented on a preexisting third party environment called "grid world"                          #
+#It can be found at https://github.com/MJeremy2017/Reinforcement-Learning-Implementation/blob/master/GridWorld/gridWorld_Q.py#
+#This algorithm shows the difference between q-learning which was originally implemented and policy iteration                #
+##############################################################################################################################
+
 import numpy as np
 
 # global variables

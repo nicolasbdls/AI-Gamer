@@ -1,4 +1,8 @@
 import gym
+###################################################################################
+#This algorithm is the implementation of the SARSA method for the game MountainCar#
+###################################################################################
+
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib
