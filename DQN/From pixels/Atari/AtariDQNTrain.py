@@ -195,6 +195,6 @@ if __name__ == '__main__':
         if i % 10 == 0 :
             moy10 = moy/10
             print(f'\rmoyenne10ep {moy10},episode {i},epsilon = {eps}, step = {step}')
-            if i % 100 == 0 :
-              agent.save(i, moy10)
+            #if i % 100 == 0 :                  #uncomment to save the models
+              #agent.save(i, moy10)
             moy = 0
