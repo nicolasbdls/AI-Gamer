@@ -1,6 +1,6 @@
 # AI-Gamer
 
-This project was aimed at writing algorithms able to learn how to play various games (for example Atari). Below are shown some results that have been obtained:
+This project was aimed at writing algorithms able to learn how to play various games (for example Atari). The games' environments are taken from OpenAI Gym. Below are shown some results that have been obtained:
 
 ![](pong.gif)
 ![](breakout.gif)
