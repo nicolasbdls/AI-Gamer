@@ -21,7 +21,9 @@ from os.path import exists
 from wrappers import *
 
 
-load = False
+load = False     #set to True if you want to upload a trained model, unfortunately, in the existing trained models epsilon was not saved, 
+                 #you should therefore reduce epsilon (for example at 0.02) when uploading a trained model to exploit the network 
+
 
 env_id = "PongNoFrameskip-v4"
 env    = make_atari(env_id)
